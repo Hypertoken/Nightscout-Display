@@ -47,22 +47,25 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
 2. **Download Libraries and Drivers:**
    - Install required libraries mentioned above.
 
-3. **Configure Wifi Details:**
+3. **Credentials.h.example:**
+   - Rename credentials.h.example to credentials.h (Just remove .example)
+
+4. **Configure Wifi Details:**
    - Update Wifi details in the credentials.h file.
 
-4. **Configure Nightscout Connection:**
+5. **Configure Nightscout Connection:**
    - Add your Nightscout URL and SHA also in the credentials.h file.
 
-5. **Adjust Timezone:**
+6. **Adjust Timezone:**
    - Change timezone if needed.
 
-6. **Customize Screen Pins:**
+7. **Customize Screen Pins:**
    - Modify screen pins if necessary (e.g., "SSD1306Wire display(0x3c, D2, D5);").
 
-7. **Set Sleep Time:**
+8. **Set Sleep Time:**
    - Adjust the sleep time for the number of minutes between site checks (default is every 1 minute).
 
-8. **Upload Sketch:**
+9. **Upload Sketch:**
    - Upload the sketch, ensuring the board is set to "LOLIN(WEMOS) D1 R2 & mini."
 
 ## Wiring
