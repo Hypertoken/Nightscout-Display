@@ -15,25 +15,28 @@ This is a modified version of those projects.
 ## Requirements
 
 ### Hardware:
-- Wemos D1 Mini
-- Blue/Yellow I2C OLED Display
+- [Wemos D1 Mini](https://www.amazon.com/s?k=wemos+d1+mini)
+- [Blue/Yellow I2C OLED Display](https://www.amazon.com/s?k=Blue%2FYellow+I2C+OLED+Display)
 
 ### 3D Printed Case
 Credit to Qrome - [Thingiverse link](https://www.thingiverse.com/thing:2884823)
+
+### Arduino
+
+- [Download and install Arduino IDE 1.x or 2.x](https://www.arduino.cc/en/software)
+
+### Boards Manager
+
+Starting with 1.6.4, Arduino allows installation of third-party platform packages using Boards Manager. We have packages available for Windows, Mac OS, and Linux (32 and 64 bit).
+
+- Start Arduino and open the Preferences window
+- Enter `https://arduino.esp8266.com/stable/package_esp8266com_index.json` into the *File>Preferences>Additional Boards Manager URLs* field of the Arduino IDE. You can add multiple URLs, separating them with commas.
+- Open Boards Manager from Tools > Board menu and install *esp8266* platform (and don't forget to select your ESP8266 board from Tools > Board menu after installation).
 
 ### Libraries:
 - [Time](https://github.com/PaulStoffregen/Time)
 - [ArduinoJson](https://github.com/bblanchon/ArduinoJson) (Version 5)
 - [esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)
-
-### Installing with Boards Manager
-
-Starting with 1.6.4, Arduino allows installation of third-party platform packages using Boards Manager. We have packages available for Windows, Mac OS, and Linux (32 and 64 bit).
-
-- [Download and install Arduino IDE 1.x or 2.x](https://www.arduino.cc/en/software)
-- Start Arduino and open the Preferences window
-- Enter `https://arduino.esp8266.com/stable/package_esp8266com_index.json` into the *File>Preferences>Additional Boards Manager URLs* field of the Arduino IDE. You can add multiple URLs, separating them with commas.
-- Open Boards Manager from Tools > Board menu and install *esp8266* platform (and don't forget to select your ESP8266 board from Tools > Board menu after installation).
 
 ## Setup
 
