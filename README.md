@@ -27,13 +27,13 @@ Credit to Qrome - [Thingiverse link](https://www.thingiverse.com/thing:2884823)
 - [esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)
 
 ### Board Manager:
-- [ESP8266](http://arduino.esp8266.com/stable/package_esp8266com_index.json)
+- [ESP8266](http://arduino.esp8266.com/stable/package_esp8266com_index.json) (v2.7.4)
 
 ## Setup
 
 1. **Setup Arduino:**
    - Install Arduino IDE.
-   - Add ESP8266 board support.
+   - Add ESP8266 (v2.7.4) board support.
 
 2. **Download Libraries and Drivers:**
    - Install required libraries mentioned above.
