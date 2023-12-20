@@ -76,7 +76,7 @@ Connect the hardware as follows:
 
 ### Troubleshooting
 
-Make sure you check the issues section for some help. Here are some closed issues that I ran into when first setting up the project; [Issues - Closed](https://github.com/Hypertoken/Nightscout-Display/issues?q=is%3Aissue+is%3Aclosed)
+Make sure you check the issues section for some help. Here are some issues that I solved when first setting up the project; [Issues - Closed](https://github.com/Hypertoken/Nightscout-Display/issues?q=is%3Aissue+is%3Aclosed)
 
 ## Contributing
 
