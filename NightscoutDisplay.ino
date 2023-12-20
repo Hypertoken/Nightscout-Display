@@ -8,28 +8,28 @@
 #include <TimeLib.h>
 
 // Credentials 
-#include "credentials.h"       // if you have an external file with your credentials you can use it - remove before upload
+#include "credentials.h" 
 
 // timezone
 const int timezone = -8; // -8 for PST
 const int timezoneOffset = timezone * SECS_PER_MIN;
 
+//OLED Screen Pins
+SSD1306Wire display(0x3c, D2, D5);
+
 //Miutes to sleep for
 const int sleepTimeS = 1;
 
-//WIFI-
+//You can hard code these variables here, if so, you should remove the line above to include the credentials.h. 
+//However, for security you should use the credentials.h file
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASS;
-
 const char* host = HOST_SITE;
-const int httpsPort = 443;
-const size_t bufferSize = 3*JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(13) + 280;
 const char* fingerprint = HOST_PRINT;
 
-SSD1306Wire display(0x3c, D2, D5);
-
+const int httpsPort = 443;
+const size_t bufferSize = 3*JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(13) + 280;
 bool firstrun = true;
-
 const char* directarr = "";
 
 const unsigned char ArrowUp [] PROGMEM = {

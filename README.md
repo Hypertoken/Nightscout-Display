@@ -48,10 +48,10 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
    - Install required libraries mentioned above.
 
 3. **Configure Wifi Details:**
-   - Update Wifi details in the sketch.
+   - Update Wifi details in the credentials.h file.
 
 4. **Configure Nightscout Connection:**
-   - Add your Nightscout URL and SHA fingerprint.
+   - Add your Nightscout URL and SHA also in the credentials.h file.
 
 5. **Adjust Timezone:**
    - Change timezone if needed.
