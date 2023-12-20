@@ -7,6 +7,9 @@
 #include <ArduinoJson.h> // have to use version 5.
 #include <TimeLib.h>
 
+// Credentials 
+#include "credentials.h"       // if you have an external file with your credentials you can use it - remove before upload
+
 // timezone
 const int timezone = -8; // -8 for PST
 const int timezoneOffset = timezone * SECS_PER_MIN;
@@ -15,15 +18,13 @@ const int timezoneOffset = timezone * SECS_PER_MIN;
 const int sleepTimeS = 1;
 
 //WIFI-
-const char* ssid = "YOUR-SSID"; //enter your SSID
-const char* password = "WIFI-PSW"; //enter your wifi password
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASS;
 
-const char* host = "YOUR.NIGHTSCOUT.SITE"; //enter your nightscout host here - no "https://" needed
+const char* host = HOST_SITE;
 const int httpsPort = 443;
 const size_t bufferSize = 3*JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(13) + 280;
-// SHA1 fingerprint of the host's SSL certificate
-// Goto https://www.grc.com/fingerprints.htm type in ur sites URL to obtain the fingerprint
-const char* fingerprint = "AF:B5:..."; //enter the https fingerprint if you want this verification
+const char* fingerprint = HOST_PRINT;
 
 SSD1306Wire display(0x3c, D2, D5);
 
