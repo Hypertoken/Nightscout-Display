@@ -31,7 +31,7 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
 
 - Start Arduino and open the Preferences window
 - Enter `https://arduino.esp8266.com/stable/package_esp8266com_index.json` into the *File>Preferences>Additional Boards Manager URLs* field of the Arduino IDE. You can add multiple URLs, separating them with commas.
-- Open Boards Manager from Tools > Board menu and install *esp8266* platform (and don't forget to select your ESP8266 board from Tools > Board menu after installation).
+- Open Boards Manager from Tools > Board menu and install *esp8266* (v2.7.4) platform (and don't forget to select your ESP8266 board from Tools > Board menu after installation).
 
 ### Libraries:
 - [Time](https://github.com/PaulStoffregen/Time)
@@ -73,6 +73,10 @@ Connect the hardware as follows:
 - GND = GND
 - SDA = D2
 - SCL = D5
+
+### Troubleshooting
+
+Make sure you check the issues section for some help. Here are some closed issues that I ran into when first setting up the project; [Issues - Closed](https://github.com/Hypertoken/Nightscout-Display/issues?q=is%3Aissue+is%3Aclosed)
 
 ## Contributing
 
