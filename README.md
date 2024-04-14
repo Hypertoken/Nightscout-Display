@@ -17,6 +17,7 @@ This is a modified version of those projects.
 ### Hardware:
 - [Wemos D1 Mini](https://www.amazon.com/s?k=wemos+d1+mini)
 - [Blue/Yellow I2C OLED Display](https://www.amazon.com/s?k=Blue%2FYellow+I2C+OLED+Display)
+- 1x Neopixel
 
 ### 3D Printed Case
 Credit to Qrome - [Thingiverse link](https://www.thingiverse.com/thing:2884823)
@@ -37,7 +38,8 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
 - [Time](https://github.com/PaulStoffregen/Time)
 - [ArduinoJson](https://github.com/bblanchon/ArduinoJson) (Version 5)
 - [esp8266-oled-ssd1306](https://github.com/ThingPulse/esp8266-oled-ssd1306)
-
+- [Adafruit NeoPixel](https://github.com/adafruit/Adafruit_NeoPixel)
+  
 ## Setup
 
 1. **Setup Arduino:**
@@ -59,8 +61,9 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
 6. **Adjust Timezone:**
    - Change timezone if needed.
 
-7. **Customize Screen Pins:**
+7. **Customize Pins:**
    - Modify screen pins if necessary (e.g., "SSD1306Wire display(0x3c, D2, D5);").
+   - Modify LED count and pins if necessary (e.g., "Adafruit_NeoPixel pixels(1, D6);").
 
 8. **Set Sleep Time:**
    - Adjust the sleep time for the number of minutes between site checks (default is every 1 minute).
@@ -72,11 +75,17 @@ Starting with 1.6.4, Arduino allows installation of third-party platform package
 
 Connect the hardware as follows:
 
+Display
 - VCC = 3v3
 - GND = GND
 - SDA = D2
 - SCL = D5
 
+LED
+- VCC = 5V
+- GND = GND
+- DAT = D6
+  
 ### Troubleshooting
 
 Make sure you check the issues section for some help. Here are some issues that I solved when first setting up the project; [Issues - Closed](https://github.com/Hypertoken/Nightscout-Display/issues?q=is%3Aissue+is%3Aclosed)
