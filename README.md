@@ -17,7 +17,7 @@ This is a modified version of those projects.
 ### Hardware:
 - [Wemos D1 Mini](https://www.amazon.com/s?k=wemos+d1+mini)
 - [Blue/Yellow I2C OLED Display](https://www.amazon.com/s?k=Blue%2FYellow+I2C+OLED+Display)
-- 1x Neopixel
+- 1x [Neopixel](https://www.amazon.com/s?k=WS2812B)
 
 ### 3D Printed Case
 Credit to Qrome - [Thingiverse link](https://www.thingiverse.com/thing:2884823)
