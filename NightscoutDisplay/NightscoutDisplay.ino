@@ -8,6 +8,7 @@
 #include <TimeLib.h>
 #include <Adafruit_NeoPixel.h>
 
+
 // Credentials 
 #include "credentials.h" 
 
@@ -17,6 +18,7 @@ const int timezoneOffset = timezone * SECS_PER_MIN;
 
 //OLED Screen Pins
 SSD1306Wire display(0x3c, D2, D5);
+
 
 //LED Count/Pins
 Adafruit_NeoPixel pixels(1, D6);
