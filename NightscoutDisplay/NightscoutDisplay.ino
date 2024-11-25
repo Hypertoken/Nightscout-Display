@@ -31,7 +31,6 @@ const int sleepTimeS = 1;
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASS;
 const char* host = HOST_SITE;
-const char* fingerprint = HOST_PRINT;
 
 const int httpsPort = 443;
 const size_t bufferSize = 3*JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(13) + 280;
@@ -59,6 +58,7 @@ const unsigned char ArrowUpD [] PROGMEM = {
 const unsigned char ArrowDownD [] PROGMEM = {
   0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x08, 0x10, 0x88, 0x11, 0x49, 0x92, 0x2a, 0x54, 0x1c, 0x38, 0x08, 0x10,
 };
+const char* bgs0_sgv;
 
 void adjustTimezone(time_t& timestamp) {
     timestamp += timezoneOffset * SECS_PER_MIN;
@@ -173,11 +173,22 @@ bool isDST(time_t timestamp) {
 
 void setpixel(String BGS) {
   int BG = BGS.toInt();
-  pixels.clear(); 
   if (BG > 200) {
     pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+  } else if (BG < 70) {
+    unsigned long currentTime = millis();
+    int patternInterval = 50; // Adjust the interval to change the speed of the pattern
+    int patternStep = currentTime / patternInterval % 8;
+
+    if (patternStep == 0 || patternStep == 2) {
+      pixels.setPixelColor(0, pixels.Color(255, 0, 0)); // Red
+    } else if (patternStep == 4 || patternStep == 6) {
+      pixels.setPixelColor(0, pixels.Color(0, 0, 255)); // Blue
+    } else {
+      pixels.setPixelColor(0, pixels.Color(0, 0, 0)); // Off
+    }
   } else if (BG < 90) {
-    pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(0, pixels.Color(255, 128, 0));
   } else {
     pixels.setPixelColor(0, pixels.Color(0, 255, 0));
   }
@@ -190,8 +201,7 @@ void getreadings() {
   Serial.print("connecting to ");
   Serial.println(host);
 
-  Serial.printf("Using fingerprint '%s'\n", fingerprint);
-  client.setFingerprint(fingerprint);
+  client.setInsecure();
 
   if (firstrun) { 
     display.clear();
@@ -205,13 +215,6 @@ void getreadings() {
   while (!client.connect(host, httpsPort)) {
     Serial.println("connection failed");
     delay(30000);
-  }
-
-  if (client.verify(fingerprint, host)) {
-    Serial.println("certificate matches");
- 
-  } else {
-    Serial.println("certificate doesn't match");
   }
 
   String url = "/pebble";
@@ -242,7 +245,7 @@ void getreadings() {
   time_t status0_now1 = status0_now.toInt();
   JsonObject& bgs0 = root["bgs"][0];
 
-  const char* bgs0_sgv = bgs0["sgv"]; 
+  bgs0_sgv = bgs0["sgv"]; 
   const char* bgs0_direction = bgs0["direction"]; 
   String bgs0_datetime = bgs0["datetime"]; 
   bgs0_datetime = bgs0_datetime.substring(0, bgs0_datetime.length() - 3);
@@ -275,7 +278,6 @@ void getreadings() {
   Serial.println(String(bgs0_bgdelta) + " ");
   //call the "showdata" function to show the data on the LCD screen
   showdata(status0_now1,bgs0_sgv,dataAge,bgs0_iob,bgs0_direction,bgs0_bgdelta);
-  setpixel(bgs0_sgv);
   Serial.print("Direction:  ");
   Serial.println(directarr); 
   Serial.print("Insulin Onboard is:  ");
@@ -289,6 +291,7 @@ void setup() {
   display.init();
   display.clear();
   pixels.begin(); 
+  pixels.clear(); 
   display.setFont(ArialMT_Plain_10);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   display.drawString(64, 16, "Connecting to WIFI");
@@ -298,14 +301,28 @@ void setup() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
-    delay(500);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+    pixels.show(); 
+    delay(250);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.show(); 
+    delay(250);
   }
   Serial.println(".");
   Serial.println("Connected to WIFI");
   Serial.println(WiFi.localIP());
 }
-void loop()
+void loop() 
 {
-  getreadings();
-  delay(sleepTimeS * SECS_PER_MIN * 1000);
+  static unsigned long lastReadingsTime = 0;
+  unsigned long currentTime = millis();
+
+  // Run setpixel every loop iteration
+  setpixel(bgs0_sgv);
+
+  // Run getreadings every sleepTimeS minutes
+  if (lastReadingsTime == 0 || currentTime - lastReadingsTime >= sleepTimeS * SECS_PER_MIN * 1000) {
+    lastReadingsTime = currentTime;
+    getreadings();
+  }
 }
