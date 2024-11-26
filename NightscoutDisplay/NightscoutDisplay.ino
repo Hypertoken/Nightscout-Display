@@ -25,7 +25,6 @@ const int sleepTimeS = 1;
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASS;
 const char* host = HOST_SITE;
-const char* fingerprint = HOST_PRINT;
 
 const int httpsPort = 443;
 const size_t bufferSize = 3*JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2*JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(13) + 280;
@@ -171,8 +170,7 @@ void getreadings() {
   Serial.print("connecting to ");
   Serial.println(host);
 
-  Serial.printf("Using fingerprint '%s'\n", fingerprint);
-  client.setFingerprint(fingerprint);
+  client.setInsecure();
 
   if (firstrun) { 
     display.clear();
@@ -186,13 +184,6 @@ void getreadings() {
   while (!client.connect(host, httpsPort)) {
     Serial.println("connection failed");
     delay(30000);
-  }
-
-  if (client.verify(fingerprint, host)) {
-    Serial.println("certificate matches");
- 
-  } else {
-    Serial.println("certificate doesn't match");
   }
 
   String url = "/pebble";
